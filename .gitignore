@@ -1,5 +1,2 @@
-terraform.tfstate
-terraform.tfstate.backup
-.terraform/
-terraform.tfvars
 ansible/.vault_pass
+.env
