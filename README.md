@@ -10,3 +10,7 @@ Welcome to my repo of my homelab. In this README file I will guide you on settin
 - [kubectl](https://google.com)
 - [Proxmox CLI tools](https://google.com)
 - [ArgoCD](https://google.com) or [Flux](https://google.com)
+
+## ARR Stack Tutorial
+
+[Jim's Garage - YouTube Video](https://www.youtube.com/watch?v=GPouykKLqbE)
