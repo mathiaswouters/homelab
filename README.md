@@ -12,7 +12,7 @@
 - **Configuration as Code (configuring vms)**: Ansible
 - **CI/CD & Version Control**: GitLab
 - **GitOps**: ArgoCD
-- **Container Orchestration / Kubernetes**: ...
+- **Container Orchestration / Kubernetes**: ...  --> 2 clusters (test and prod)
 - **Monitoring**: Prometheus + Grafana
 - **Persistent Volumes**: Longhorn
 - **Container Registry**: Harbor
