@@ -1,5 +1,7 @@
 # Homelab
 
+[TrueNas YouTube Guide](https://www.youtube.com/watch?v=SJZxgxc0Qhg)
+
 ## Architecture:
 - **Hypervisor**: Proxmox
 - **NAS**: TrueNAS
@@ -17,6 +19,25 @@
 - **Load Balancer**: MetalLB
 
 ## Services:
+- **Dashboard**:
+- ****:
+- ****:
+- ****:
+- ****:
+- ****:
+- ****:
+- ****:
+- ****:
+- ****:
+- ****:
+- ****:
+- ****:
+- ****:
+- ****:
+- ****:
+- ****:
+- ****:
+- ****:
 
 ## ARR Stack Tutorial
 
