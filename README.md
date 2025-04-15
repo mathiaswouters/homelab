@@ -19,25 +19,18 @@
 - **Load Balancer**: MetalLB
 
 ## Services:
-- **Dashboard**:
-- ****:
-- ****:
-- ****:
-- ****:
-- ****:
-- ****:
-- ****:
-- ****:
-- ****:
-- ****:
-- ****:
-- ****:
-- ****:
-- ****:
-- ****:
-- ****:
-- ****:
-- ****:
+- **Dashboard**: Homepage
+- **Reverse Proxy**: Traefik
+- **VPN / Remote Access**: Tailscale / Twingate / Wireguard
+- **Ad-Blocking**: Pi-Hole
+- **Smart Home**: Home Assistant
+- **Linktree alternative**: Littlelink
+- **Link Shortener**: Shlink
+- **File Hosting Services**: NextCloud
+- **Torrent**: qBittorent
+- **Media Stack**: ARR Stack
+- **Jellyfin**: Media Player
+- **...**: ...
 
 ## ARR Stack Tutorial
 
