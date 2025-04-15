@@ -1,15 +1,49 @@
 # Homelab
 
-## Welcome
+## Architecture:
+- Hypervisor:
+  - Proxmox
+- NAS:
+	- TrueNAS
 
-Welcome to my repo of my homelab. In this README file I will guide you on setting up a homelab like I do. If you want to read more documentation, than you can click this [link](./documentation/docs.md).
+- Infrastructure as Code (provisioning vms):
+	- Terraform
 
-## Install Required Tools
+- Configuration as Code (configuring vms):
+	- Ansible
 
-- [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
-- [kubectl](https://google.com)
-- [Proxmox CLI tools](https://google.com)
-- [ArgoCD](https://google.com) or [Flux](https://google.com)
+- CI/CD & Version Control:
+	- GitLab
+
+- GitOps:
+	- ArgoCD
+
+- Container Orchestration / Kubernetes:
+	- ...
+
+- Monitoring:
+	- Prometheus + Grafana
+
+
+- Persistent Volumes:
+	- Longhorn
+
+- Container Registry:
+	- Harbor
+
+- Secrets Management:
+	- SOPS + Age OR HashiCorp Vault / OpenBao
+
+- Certs / TLS Management:
+	- Cert-Manager + Let's Encrypt
+
+- DNS:
+	- Pi-Hole
+
+- Load Balancer
+	- MetalLB
+
+## Services:
 
 ## ARR Stack Tutorial
 
