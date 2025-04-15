@@ -1,6 +1,9 @@
 # Homelab
 
-[TrueNas YouTube Guide](https://www.youtube.com/watch?v=SJZxgxc0Qhg)
+## Steps:
+1) Follow this guide: [TrueNas YouTube Guide](https://www.youtube.com/watch?v=SJZxgxc0Qhg)
+2) See where everything needs to be deployed and where everything will be ran
+3) Create a drawio diagram of everything
 
 ## Architecture:
 - **Hypervisor**: Proxmox
