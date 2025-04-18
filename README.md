@@ -37,4 +37,7 @@
 
 ## ARR Stack Tutorial
 
-[Jim's Garage - YouTube Video](https://www.youtube.com/watch?v=GPouykKLqbE)
+[ARR Stack Tutorial - YouTube Video](https://www.youtube.com/watch?v=GPouykKLqbE)
+
+## Resources
+[Jim's Garage - YouTube Videos](https://www.youtube.com/@Jims-Garage/videos)
