@@ -16,9 +16,9 @@
 - **Monitoring**: Prometheus + Grafana
 - **Persistent Volumes**: Longhorn
 - **Container Registry**: Harbor
-- **Secrets Management**: SOPS + Age OR HashiCorp Vault / OpenBao
+- **Secrets Management**: HashiCorp Vault / OpenBao
 - **Certs / TLS Management**: Cert-Manager + Let's Encrypt
-- **DNS**: Pi-Hole
+- **DNS**: Pi-Hole - External-DNS
 - **Load Balancer**: MetalLB
 
 ## Services:
