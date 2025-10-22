@@ -1,0 +1,8 @@
+---
+# Main tasks for GitLab role
+
+- name: Include Docker installation tasks
+  include_tasks: docker.yml
+
+- name: Include GitLab installation tasks
+  include_tasks: gitlab.yml

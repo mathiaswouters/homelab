@@ -1,0 +1,43 @@
+---
+# GitLab specific configuration
+# These variables override the defaults in roles/gitlab/defaults/main.yml
+
+# Installation directory
+gitlab_home: /srv/gitlab
+
+# GitLab version and edition
+gitlab_version: "17.5.1"
+gitlab_edition: "ee"  # or "ce" for Community Edition
+
+# Network configuration - CHANGE THESE!
+gitlab_hostname: "gitlab.homelab.local"
+gitlab_external_url: "https://gitlab.homelab.local"
+
+# Port configuration (standard ports)
+gitlab_http_port: 80
+gitlab_https_port: 443
+gitlab_ssh_port: 22
+
+# Example: Custom ports configuration
+# Uncomment these if you want to use custom ports
+# gitlab_http_port: 8929
+# gitlab_https_port: 443
+# gitlab_ssh_port: 2424
+# gitlab_external_url: "http://gitlab.homelab.local:8929"
+
+# GitLab features
+gitlab_prometheus_enabled: false
+gitlab_backup_keep_time: 604800  # Keep backups for 7 days
+
+# SMTP Configuration (optional)
+# Uncomment and configure if you want email notifications
+# gitlab_smtp_enabled: true
+# gitlab_smtp_address: "smtp.gmail.com"
+# gitlab_smtp_port: 587
+# gitlab_smtp_user: "your-email@gmail.com"
+# gitlab_smtp_password: "your-app-password"
+# gitlab_smtp_domain: "smtp.gmail.com"
+# gitlab_smtp_authentication: "login"
+# gitlab_smtp_enable_starttls: true
+# gitlab_smtp_tls: false
+# gitlab_email_from: "gitlab@homelab.local"

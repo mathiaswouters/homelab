@@ -1,0 +1,8 @@
+---
+# Main playbook for homelab bootstrap
+
+- name: Install and Configure GitLab
+  hosts: gitlab
+  become: yes
+  roles:
+    - gitlab

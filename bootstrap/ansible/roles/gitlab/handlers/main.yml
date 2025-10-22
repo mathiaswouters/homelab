@@ -1,0 +1,12 @@
+---
+# Handlers for GitLab role
+
+- name: restart docker
+  systemd:
+    name: docker
+    state: restarted
+
+- name: restart gitlab
+  shell: docker restart gitlab
+  when: "'gitlab' in (docker container ls -a --format '{{.Names}}' | grep gitlab)"
+  ignore_errors: yes
