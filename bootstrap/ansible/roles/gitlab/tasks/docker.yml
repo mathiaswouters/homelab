@@ -1,5 +1,4 @@
 ---
-# Docker installation tasks
 
 - name: Update apt cache
   apt:
@@ -34,6 +33,6 @@
     enabled: yes
 
 - name: Install Python Docker packages
-  pip:
+  apt:
     name: "{{ python_packages }}"
     state: present

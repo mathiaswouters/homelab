@@ -1,5 +1,4 @@
 ---
-# Main playbook for homelab bootstrap
 
 - name: Install and Configure GitLab
   hosts: gitlab

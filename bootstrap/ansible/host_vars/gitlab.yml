@@ -1,6 +1,4 @@
 ---
-# GitLab specific configuration
-# These variables override the defaults in roles/gitlab/defaults/main.yml
 
 # Installation directory
 gitlab_home: /srv/gitlab
@@ -9,10 +7,10 @@ gitlab_home: /srv/gitlab
 gitlab_version: "18.5.1"
 gitlab_edition: "ce"
 
-# Network configuration - CHANGE THESE!
+# Network configuration
 gitlab_hostname: "gitlab"
 
-# Port configuration (standard ports)
+# Port configuration
 gitlab_http_port: 80
 gitlab_https_port: 443
-gitlab_ssh_port: 22
+gitlab_ssh_port: 2222

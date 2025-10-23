@@ -66,7 +66,7 @@ Terraform part ...
 ```
 bootstrap/ansible/
 ├── ansible.cfg
-├── gitlab-docker.yml
+├── site.yml
 ├── inventory/
 │   └── hosts.ini
 └── host_vars/
@@ -113,7 +113,7 @@ gitlab | SUCCESS => {
 ##### 3. Run the Playbook
 
 ```bash
-ansible-playbook gitlab-docker.yml
+ansible-playbook site.yml
 ```
 
 This will:
@@ -247,7 +247,7 @@ Backups are stored in `/srv/gitlab/data/backups/`
 1. Update `gitlab_version` in `host_vars/gitlab.yml`
 2. Re-run the playbook:
    ```bash
-   ansible-playbook gitlab-docker.yml
+   ansible-playbook site.yml
    ```
 
 #### Integration with Your Workflow

@@ -1,41 +1,7 @@
 ---
-# Default variables for GitLab role
-# These can be overridden in host_vars/gitlab.yml
-
-# GitLab installation directory
-gitlab_home: /srv/gitlab
-
-# GitLab version and edition
-gitlab_version: "17.5.1"
-gitlab_edition: "ee"  # "ee" for Enterprise Edition or "ce" for Community Edition
-
-# Network configuration
-gitlab_hostname: "gitlab.example.com"
-gitlab_external_url: "https://gitlab.example.com"
-
-# Port configuration
-gitlab_http_port: 80
-gitlab_https_port: 443
-gitlab_ssh_port: 22
 
 # Docker configuration
 gitlab_shm_size: "256m"
-
-# GitLab configuration
-gitlab_prometheus_enabled: false
-gitlab_backup_keep_time: 604800  # 7 days in seconds
-
-# SMTP configuration (disabled by default)
-gitlab_smtp_enabled: false
-# gitlab_smtp_address: "smtp.gmail.com"
-# gitlab_smtp_port: 587
-# gitlab_smtp_user: "your-email@gmail.com"
-# gitlab_smtp_password: "your-app-password"
-# gitlab_smtp_domain: "smtp.gmail.com"
-# gitlab_smtp_authentication: "login"
-# gitlab_smtp_enable_starttls: true
-# gitlab_smtp_tls: false
-# gitlab_email_from: "gitlab@example.com"
 
 # Docker packages
 docker_packages:
@@ -55,5 +21,5 @@ system_packages:
 
 # Python packages
 python_packages:
-  - docker
-  - docker-compose
+  - python3-docker
+  - python3-requests

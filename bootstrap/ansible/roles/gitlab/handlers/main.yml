@@ -1,5 +1,4 @@
 ---
-# Handlers for GitLab role
 
 - name: restart docker
   systemd:

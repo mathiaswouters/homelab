@@ -2,7 +2,7 @@ services:
   gitlab:
     image: gitlab/gitlab-{{ gitlab_edition }}:{{ gitlab_version }}-{{ gitlab_edition }}.0
     container_name: gitlab
-    restart: always
+    restart: unless-stopped
     hostname: '{{ gitlab_hostname }}'
     ports:
       - '{{ gitlab_http_port }}:{% if gitlab_http_port != 80 %}{{ gitlab_http_port }}{% else %}80{% endif %}'
@@ -13,4 +13,3 @@ services:
       - '{{ gitlab_home }}/logs:/var/log/gitlab'
       - '{{ gitlab_home }}/data:/var/opt/gitlab'
     shm_size: '{{ gitlab_shm_size }}'
-    restart: unless-stopped

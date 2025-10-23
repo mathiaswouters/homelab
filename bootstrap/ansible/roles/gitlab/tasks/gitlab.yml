@@ -1,5 +1,4 @@
 ---
-# GitLab installation tasks
 
 - name: Create GitLab directory structure
   file:
@@ -47,14 +46,26 @@
     msg: "GitLab is initializing. This process can take several minutes..."
 
 - name: Wait additional time for GitLab initialization
-  wait_for:
-    timeout: 30
-  delegate_to: localhost
+  pause:
+    seconds: 30
 
-- name: Get GitLab IP address
-  shell: docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' gitlab
-  register: gitlab_ip
-  changed_when: false
+- name: Get GitLab access URL
+  block:
+    - name: Get GitLab host IP address
+      set_fact:
+        gitlab_host_ip: "{{ ansible_host }}"
+
+    - name: Construct GitLab access URL (with port)
+      set_fact:
+        gitlab_access_url: "http://{{ gitlab_hostname }}:{{ gitlab_http_port }}"
+        gitlab_access_url_ip: "http://{{ gitlab_host_ip }}:{{ gitlab_http_port }}"
+      when: gitlab_http_port != 80
+
+    - name: Construct GitLab access URL (port 80)
+      set_fact:
+        gitlab_access_url: "http://{{ gitlab_hostname }}"
+        gitlab_access_url_ip: "http://{{ gitlab_host_ip }}"
+      when: gitlab_http_port == 80
 
 - name: Get initial root password
   shell: docker exec gitlab grep 'Password:' /etc/gitlab/initial_root_password 2>/dev/null || echo "Password file not yet created"
@@ -66,9 +77,14 @@
   debug:
     msg:
       - "=== GitLab Installation Complete ==="
-      - "Access URL: {{ gitlab_ip }}"
-      - "Username: root"
-      - "{{ root_password.stdout }}"
+      - ""
+      - "Access URLs:"
+      - "  - By hostname: {{ gitlab_access_url }}"
+      - "  - By IP: {{ gitlab_access_url_ip }}"
+      - ""
+      - "Login Credentials:"
+      - "  - Username: root"
+      - "  - {{ root_password.stdout }}"
       - ""
       - "IMPORTANT: The password file will be automatically deleted after 24 hours"
       - "Change the root password immediately after first login!"
