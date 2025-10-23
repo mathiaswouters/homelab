@@ -40,13 +40,19 @@ Host *
 
 ---
 
-## 5. Install a GitLab VM (using Docker)
+## 5. Configure proxmox to use Pi-Hole as DNS
 
-### 5.1 Provisioning / Deployting the VM
+...
+
+---
+
+## 6. Install a GitLab VM (using Docker)
+
+### 6.1 Provisioning / Deployting the VM
 
 Terraform part ...
 
-### 5.2 Configuring the VM
+### 6.2 Configuring the VM
 
 #### Prerequisites
 
