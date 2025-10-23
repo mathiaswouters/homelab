@@ -47,7 +47,7 @@ variable vm_configs {
         vm_id       = 102
         name        = "vm-1"
         memory      = 1024
-        vm_state    = "stopped"
+        vm_state    = "running"
         onboot      = true
         startup     = "order=2"
         ipconfig    = "ip=192.168.0.12/24,gw=192.168.0.1"
@@ -60,7 +60,7 @@ variable vm_configs {
     #     vm_id       = 102
     #     name        = "vm-2"
     #     memory      = 1024
-    #     vm_state    = "stopped"
+    #     vm_state    = "running"
     #     onboot      = true
     #     startup     = "order=2"
     #     ipconfig    = "ip=<IP_ADDRESS>/<SUBNET_MASK>,gw=<GATEWAY_IP_ADDRESS>"
@@ -73,7 +73,7 @@ variable vm_configs {
     #     vm_id       = 103
     #     name        = "vm-3"
     #     memory      = 1024
-    #     vm_state    = "stopped"
+    #     vm_state    = "running"
     #     onboot      = true
     #     startup     = "order=2"
     #     ipconfig    = "ip=<IP_ADDRESS>/<SUBNET_MASK>,gw=<GATEWAY_IP_ADDRESS>"

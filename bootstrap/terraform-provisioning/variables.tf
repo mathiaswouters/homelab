@@ -47,7 +47,7 @@ variable vm_configs {
         vm_id       = 101
         name        = "gitlab"
         memory      = 16384
-        vm_state    = "stopped"
+        vm_state    = "running"
         onboot      = true
         startup     = "order=2"
         ipconfig    = "ip=192.168.0.11/24,gw=192.168.0.1"
