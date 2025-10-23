@@ -4,37 +4,6 @@ services:
     container_name: gitlab
     restart: always
     hostname: '{{ gitlab_hostname }}'
-    environment:
-      GITLAB_OMNIBUS_CONFIG: |
-        external_url '{{ gitlab_external_url }}'
-        
-        # Disable Prometheus if configured
-        prometheus_monitoring['enable'] = {{ gitlab_prometheus_enabled | lower }}
-        
-        # Configure Git data directory
-        git_data_dirs({ "default" => { "path" => "/var/opt/gitlab/git-data" } })
-        
-        # Backup settings
-        gitlab_rails['backup_keep_time'] = {{ gitlab_backup_keep_time }}
-        
-        {% if gitlab_ssh_port != 22 %}
-        # Custom SSH port configuration
-        gitlab_rails['gitlab_shell_ssh_port'] = {{ gitlab_ssh_port }}
-        {% endif %}
-        
-        {% if gitlab_smtp_enabled %}
-        # SMTP Configuration
-        gitlab_rails['smtp_enable'] = true
-        gitlab_rails['smtp_address'] = "{{ gitlab_smtp_address }}"
-        gitlab_rails['smtp_port'] = {{ gitlab_smtp_port }}
-        gitlab_rails['smtp_user_name'] = "{{ gitlab_smtp_user }}"
-        gitlab_rails['smtp_password'] = "{{ gitlab_smtp_password }}"
-        gitlab_rails['smtp_domain'] = "{{ gitlab_smtp_domain }}"
-        gitlab_rails['smtp_authentication'] = "{{ gitlab_smtp_authentication }}"
-        gitlab_rails['smtp_enable_starttls_auto'] = {{ gitlab_smtp_enable_starttls | lower }}
-        gitlab_rails['smtp_tls'] = {{ gitlab_smtp_tls | lower }}
-        gitlab_rails['gitlab_email_from'] = '{{ gitlab_email_from }}'
-        {% endif %}
     ports:
       - '{{ gitlab_http_port }}:{% if gitlab_http_port != 80 %}{{ gitlab_http_port }}{% else %}80{% endif %}'
       - '{{ gitlab_https_port }}:443'
@@ -44,3 +13,4 @@ services:
       - '{{ gitlab_home }}/logs:/var/log/gitlab'
       - '{{ gitlab_home }}/data:/var/opt/gitlab'
     shm_size: '{{ gitlab_shm_size }}'
+    restart: unless-stopped

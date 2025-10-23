@@ -51,6 +51,11 @@
     timeout: 30
   delegate_to: localhost
 
+- name: Get GitLab IP address
+  shell: docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' gitlab
+  register: gitlab_ip
+  changed_when: false
+
 - name: Get initial root password
   shell: docker exec gitlab grep 'Password:' /etc/gitlab/initial_root_password 2>/dev/null || echo "Password file not yet created"
   register: root_password
@@ -61,7 +66,7 @@
   debug:
     msg:
       - "=== GitLab Installation Complete ==="
-      - "Access URL: {{ gitlab_external_url }}"
+      - "Access URL: {{ gitlab_ip }}"
       - "Username: root"
       - "{{ root_password.stdout }}"
       - ""
