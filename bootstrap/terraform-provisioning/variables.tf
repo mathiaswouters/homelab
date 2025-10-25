@@ -60,14 +60,14 @@ variable vm_configs {
         disk_size   = "60G"
       }
 
-      "shell-runner" = {
+      "gitlab-runner" = {
         vm_id       = 102
-        name        = "shell-runner"
+        name        = "gitlab-runner"
         tags        = "vm,system"
         memory      = 8192
         vm_state    = "running"
         onboot      = true
-        startup     = "order=2"
+        startup     = "order=3"
         ipconfig    = "ip=192.168.0.12/24,gw=192.168.0.1"
         cores       = 4
         bridge      = "vmbr0"

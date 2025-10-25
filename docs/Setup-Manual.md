@@ -149,14 +149,14 @@ Follow this guide: [HP Z440 NIC Fix](/docs/hp_z440-NIC-fix.md)
 Follow this YouTube video: [Cloud-Init on Proxmox: The VM Automation You’ve Been Missing - Tech-TheLazyAutomator](https://youtu.be/1Ec0Vg5be4s?si=QfNyq6vm1dKfqfj0)
 
 
-## 1.5 GitLab Deployment
+## 1.5 GitLab & GitLab Runner Deployment
 
 Execute the `bootstrap.sh` script. This script will run the Terraform code to provision the GitLab VM and the GitLab Runner VM in Proxmox and then it will run the Ansible code to configure and install GitLab and the GitLab Runner on those VMs.
 
 ```bash
 git clone ...
 cd homelab/bootstrap
-chmod ...
+chmod +x bootstrap.sh
 ./bootstrap.sh
 ```
 
@@ -236,27 +236,62 @@ Add the SSH Key to your GitLab account:
 
 ...
 
-### 1.6.8 Create gitlab-infrastructure project
+????
 
-1) Create a new project: `yourusername/gitlab-infrastructure`
+### 1.6.8 Create Runner in GitLab UI & Store Token
 
-### 1.6.9 Copy the code to the gitlab-infrastructure repo in GitLab
+1) Navigate to: `Admin Area` → `CI/CD` → `Runners`
+2) Click `New instance runner`
+3) Configure runner settings:
+    - Tags: docker
+    - ✅ Run untagged jobs
+    - Description: `docker-runner`
+4) Click `Create runner`
+5) Copy the token (starts with `glrt-`)
+6) Store token in Ansible Vault:
+    ```bash
+    cd bootstrap/ansible
 
-Copy the code from the [terraform-gitlab](/bootstrap/gitlab-infrastructure/) folder in this GitHub repo to the recently created `gitlab-infrastructure` repo in GitLab
+    # Create vault file for gitlab-runner group
+    mkdir -p group_vars/gitlab-runner
+    ansible-vault create group_vars/gitlab-runner/vault.yml
+    ```
+7) Enter vault password, then add:
+    ```bash
+    ---
 
-### 1.6.10 Run the gitlab-infrastructure code locally
+    vault_gitlab_runner_token: "glrt-your-copied-token-here"
+    ```
+8) Create non-encrypted vars file:
+    ```bash
+    vi group_vars/gitlab-runner/vars.yml
+    ```
+9) Add:
+    ```bash
+    ---
+    
+    gitlab_runner_token: "{{ vault_gitlab_runner_token }}"
+    ```
 
-...
+## 1.7 Register GitLab Runner
 
-## 1.7 GitLab Runner Deployment
+```bash
+ansible-playbook register-runner.yml --ask-vault-pass
+```
 
-## 1.7.1 Deploy GitLab Runner
+## 1.8 OPTIONAL: Test Runner
 
-...
+Create a test pipeline in GitLab `.gitlab-ci.yml`:
 
-## 1.7.2 Add GitLab Runner to GitLab
+```yaml
+test:
+  tags:
+    - shell
+  script:
+    - echo "Hello from GitLab Runner!"
+    - uname -a
+```
 
-...
 
 ---
 
@@ -275,6 +310,18 @@ gitlab-infrastructure/
 ├── .gitlab-ci.yml
 └── README.md
 ```
+
+### 2. Create gitlab-infrastructure project
+
+1) Create a new project: `yourusername/gitlab-infrastructure`
+
+### 2. Copy the code to the gitlab-infrastructure repo in GitLab
+
+Copy the code from the [terraform-gitlab](/bootstrap/gitlab-infrastructure/) folder in this GitHub repo to the recently created `gitlab-infrastructure` repo in GitLab
+
+### 2. Run the gitlab-infrastructure code locally
+
+...
 
 ## 2.1 Deploy the GitLab Terraform Code
 

@@ -1,0 +1,35 @@
+---
+
+# GitLab instance configuration
+gitlab_url: "http://{{ groups['gitlab'][0] }}"
+
+# Runner basic configuration
+runner_name: "docker-runner"
+runner_executor: "docker"
+runner_concurrent: 1
+runner_check_interval: 0
+runner_session_timeout: 1800
+
+# Docker executor configuration
+runner_docker_image: "alpine:latest"
+runner_docker_privileged: false
+runner_docker_volumes:
+  - "/var/run/docker.sock:/var/run/docker.sock"
+  - "/cache"
+
+# Shell executor configuration (uncomment if using shell executor)
+# runner_executor: "shell"
+# runner_name: "shell-runner"
+# runner_shell: "bash"
+
+# Kubernetes executor configuration (uncomment if using kubernetes executor)
+# runner_executor: "kubernetes"
+# runner_kubernetes_host: ""
+# runner_kubernetes_namespace: "gitlab-runner"
+# runner_kubernetes_privileged: false
+# runner_kubernetes_cpu_limit: "1"
+# runner_kubernetes_memory_limit: "1Gi"
+# runner_kubernetes_service_cpu_limit: "1"
+# runner_kubernetes_service_memory_limit: "1Gi"
+# runner_kubernetes_helper_cpu_limit: "500m"
+# runner_kubernetes_helper_memory_limit: "512Mi"
