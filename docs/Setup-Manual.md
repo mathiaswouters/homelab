@@ -242,7 +242,6 @@ Add the SSH Key to your GitLab account:
     - Enable `Run untagged jobs`
     - Description: `docker-runner`
 4) Click `Create runner`
-    --> You'll get a `This site can't be reached` error, but that is normal
 5) Copy the token (starts with `glrt-`)
 6) Store token in Ansible Vault:
     ```bash
@@ -281,12 +280,13 @@ ansible-playbook register-runner.yml --ask-vault-pass
 Create a test pipeline in GitLab `.gitlab-ci.yml`:
 
 ```yaml
-test:
+test-runner:
   tags:
-    - shell
+    - docker
   script:
     - echo "Hello from GitLab Runner!"
-    - uname -a
+    - echo "Running on: $(uname -a)"
+    - docker --version
 ```
 
 
