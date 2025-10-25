@@ -90,9 +90,59 @@ Follow this guide: [HP Z440 NIC Fix](/docs/hp_z440-NIC-fix.md)
 
 ## 1.3 Deploy Pi-Hole in LXC container
 
-...
+### 1.3.1 Create a container template
 
-Configure proxmox to use Pi-Hole as DNS
+1) Go to your local storage of your proxmox node
+
+2) Select `CT Templates` then select `Templates`
+
+3) Pick the latest Debian or Ubuntu template and download it
+
+### 1.3.2 Create the LXC Container and install Pi-Hole
+
+1) Select `Create CT` and fill in the information:
+    - Fill in password
+    - Disk size: 2GB
+    - CPU: 1 core
+    - Memory: 512 MB and 512 MB swap
+    - Fill in a static ip
+    - DNS: user host settings
+
+2) Create the LXC container and login with username `root` and the password you chose earlier
+
+### 1.3.3 Install Pi-Hole
+
+1) Update all packages:
+    ```bash
+    apt update && apt upgrade
+    ```
+
+2) Install curl package:
+    ```bash
+    apt install curl
+    ```
+
+3) Install Pi-Hole:
+    ```bash
+    curl -sSL https://install.pi-hole.net | bash
+    ```
+
+4) Fill in all the asked information:
+    - Upstream DNS Provider: Cloudflare
+    - Use the default blacklists
+    - De-select IPv6 form the protocols
+
+5) Change the admin password:
+    ```bash
+    pihole -a -p
+    ```
+
+### 1.3.4 Configure proxmox to use Pi-Hole as DNS
+
+1) Go to your node and sleect `DNS`
+
+2) Add your Pi-Hole IP address to the DNS server, change it to your first DNS server
+
 
 ## 1.4 Configure a cloud-init vm template
 
@@ -101,19 +151,15 @@ Follow this YouTube video: [Cloud-Init on Proxmox: The VM Automation You’ve Be
 
 ## 1.5 GitLab Deployment
 
-### 1.5.1 Provisioning / Deploying the GitLab VM
-
-Terraform part ...
-
-...
-
-### 1.5.1 Configuring the GitLab VM
+Execute the `bootstrap.sh` script. This script will run the Terraform code to provision the GitLab VM and the GitLab Runner VM in Proxmox and then it will run the Ansible code to configure and install GitLab and the GitLab Runner on those VMs.
 
 ```bash
-ansible-playbook site.yml
+git clone ...
+cd homelab/bootstrap
+chmod ...
+./bootstrap.sh
 ```
 
-...
 
 ## 1.6 GitLab Post-Installation
 
