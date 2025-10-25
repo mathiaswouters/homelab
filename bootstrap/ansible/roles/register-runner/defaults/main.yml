@@ -1,7 +1,7 @@
 ---
 
 # GitLab instance configuration
-gitlab_url: "http://{{ groups['gitlab'][0] }}"
+gitlab_url: "http://192.168.0.11"
 
 # Runner basic configuration
 runner_name: "docker-runner"

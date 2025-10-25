@@ -23,6 +23,7 @@
     Host *
     IdentityFile ~/.ssh/homelab
     IdentitiesOnly yes
+    SetEnv TERM=xterm-256color
     ```
 
 ...
@@ -184,11 +185,7 @@ sudo docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
 1) Go to the `User settings` and click `Password`
 2) Change the password here
 
-### 1.6.4 Disable root login
-
-...
-
-### 1.6.5 Create personal user account
+### 1.6.4 Create personal user account
 
 - Create your personal user account (manual)
 - Make your user an admin
@@ -202,8 +199,6 @@ sudo docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
 6) Then back in the `Users` page of the `Admin area` select the new user
 7) Edit the new user and enter a password
 8) Sign out of the root user and log back in with the new user
-
-...
 
 ### 1.6.6 Create ssh key and add to GitLab
 
@@ -241,16 +236,17 @@ Add the SSH Key to your GitLab account:
 ### 1.6.8 Create Runner in GitLab UI & Store Token
 
 1) Navigate to: `Admin Area` → `CI/CD` → `Runners`
-2) Click `New instance runner`
+2) Click `Create instance runner`
 3) Configure runner settings:
-    - Tags: docker
-    - ✅ Run untagged jobs
+    - Tags: `docker`
+    - Enable `Run untagged jobs`
     - Description: `docker-runner`
 4) Click `Create runner`
+    --> You'll get a `This site can't be reached` error, but that is normal
 5) Copy the token (starts with `glrt-`)
 6) Store token in Ansible Vault:
     ```bash
-    cd bootstrap/ansible
+    cd ansible/
 
     # Create vault file for gitlab-runner group
     mkdir -p group_vars/gitlab-runner
@@ -276,6 +272,7 @@ Add the SSH Key to your GitLab account:
 ## 1.7 Register GitLab Runner
 
 ```bash
+cd homelab/bootstrap/ansible
 ansible-playbook register-runner.yml --ask-vault-pass
 ```
 

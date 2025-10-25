@@ -9,6 +9,7 @@ gitlab_edition: "ce"
 
 # Network configuration
 gitlab_hostname: "gitlab"
+gitlab_ip: "192.168.0.11"
 
 # Port configuration
 gitlab_http_port: 80
