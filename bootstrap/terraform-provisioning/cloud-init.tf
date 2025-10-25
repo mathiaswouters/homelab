@@ -10,6 +10,7 @@ resource "proxmox_vm_qemu" "cloud-init" {
     bios = "ovmf"
     agent = 1
     scsihw = "virtio-scsi-single"
+    tags = each.value.tags
 
     os_type = "cloud-init"  
     memory = each.value.memory
@@ -47,7 +48,7 @@ resource "proxmox_vm_qemu" "cloud-init" {
       scsi {
           scsi0 {
               disk {
-                  size = "32G"
+                  size = each.value.disk_size
                   storage = "fastpool"
                   replicate = "true"
               }

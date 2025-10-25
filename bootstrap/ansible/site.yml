@@ -5,3 +5,9 @@
   become: yes
   roles:
     - gitlab
+
+- name: Install and Configure GitLab Runner
+  hosts: gitlab-runner
+  become: yes
+  roles:
+    - gitlab-runner

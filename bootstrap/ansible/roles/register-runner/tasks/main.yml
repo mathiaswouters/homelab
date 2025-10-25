@@ -1,0 +1,4 @@
+---
+
+- name: Include register runner tasks
+  include_tasks: register-runner.yml

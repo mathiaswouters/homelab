@@ -1,0 +1,21 @@
+---
+
+- name: Add GitLab Runner repository
+  ansible.builtin.shell: |
+    curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh" | sudo bash
+  args:
+    # Set 'creates' to a file that the script is expected to create.
+    # This makes the task idempotent (it only runs if the file doesn't exist).
+    creates: /etc/apt/sources.list.d/runner_gitlab-runner.list
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install specific version of gitlab-runner and helper images
+  ansible.builtin.apt:
+    name:
+      - "gitlab-runner={{ gitlab_runner_version }}"
+      - "gitlab-runner-helper-images={{ gitlab_runner_version }}"
+    state: present
