@@ -154,7 +154,7 @@ Follow this YouTube video: [Cloud-Init on Proxmox: The VM Automation You’ve Be
 Execute the `bootstrap.sh` script. This script will run the Terraform code to provision the GitLab VM and the GitLab Runner VM in Proxmox and then it will run the Ansible code to configure and install GitLab and the GitLab Runner on those VMs.
 
 ```bash
-git clone ...
+git clone https://github.com/mathiaswouters/homelab.git
 cd homelab/bootstrap
 chmod +x bootstrap.sh
 ./bootstrap.sh
