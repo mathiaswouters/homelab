@@ -32,8 +32,7 @@ Thumbs.db
 # Ansible
 *.retry
 *.vault
-group_vars/*/vault.yml
-host_vars/*/vault.yml
+*vault*
 
 # SSH keys
 id_rsa*
