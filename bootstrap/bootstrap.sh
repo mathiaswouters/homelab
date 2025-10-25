@@ -44,13 +44,14 @@ sleep 30
 echo -e "${YELLOW}Step 2: Installing GitLab and GitLab Runner...${NC}"
 cd ../ansible
 
-# Test connectivity
-echo "Testing SSH connectivity..."
-ansible all -m ping
+# Remove the ansible vault file if it exists to avoid conflicts
+if [ -f "group_vars/gitlab-runner/vault.yml" ]; then
+    rm -f "group_vars/gitlab-runner/vault.yml"
+fi 
 
 echo ""
 echo "Installing GitLab and GitLab Runner..."
-ansible-playbook site.yml
+ansible-playbook site.yml --ask-vault-pass
 
 echo -e "${GREEN}✓ GitLab and GitLab Runner installed${NC}"
 echo ""
