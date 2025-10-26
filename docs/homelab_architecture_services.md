@@ -104,3 +104,32 @@ Other security tools / services:
 | Audiobookshelf            | Audiobook and podcast server      |
 | Calibre-Web-Automated     | E-book management                 |
 | ...                       | ...                               |
+
+
+
+
+
+
+---
+---
+---
+
+
+
+# Architecture Summary ???????
+
+## Infrastructure VMs (Deployed in Phase 3) ??????
+- **HashiCorp Vault** (192.168.0.20) - Secrets management
+- **Harbor** (192.168.0.21) - Container registry
+
+## Management Cluster (Phase 4.1) ??????
+- **3 control-plane nodes** (192.168.0.30-32)
+- Runs: ArgoCD, Traefik, MetalLB, Cert-Manager, Monitoring, Security tools
+
+## Workload Cluster (Phase 4.2) ??????
+- **1 control-plane + 2-3 workers** (192.168.0.40-43)
+- Runs: Applications (dev/test/staging/prod namespaces), Longhorn
+
+## Network Allocation ???????
+- MetalLB IP Pool: `192.168.0.50-192.168.0.70`
+- Traefik LoadBalancer: `192.168.0.50` (management), `192.168.0.51` (workload)
