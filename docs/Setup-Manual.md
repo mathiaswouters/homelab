@@ -308,21 +308,56 @@ gitlab-infrastructure/
 └── README.md
 ```
 
-### 2. Create gitlab-infrastructure project
+## 2.1 Create gitlab-infrastructure project
 
-1) Create a new project: `yourusername/gitlab-infrastructure`
+Create a new project: `yourusername/gitlab-infrastructure`
 
-### 2. Copy the code to the gitlab-infrastructure repo in GitLab
+## 2.2 Copy the code to the gitlab-infrastructure repo in GitLab
 
 Copy the code from the [terraform-gitlab](/bootstrap/gitlab-infrastructure/) folder in this GitHub repo to the recently created `gitlab-infrastructure` repo in GitLab
 
-### 2. Run the gitlab-infrastructure code locally
+## 2.3 GitLab Terraform Access Token
 
-...
+### 2.3.1 Create Access Token
+In GitLab UI:
 
-## 2.1 Deploy the GitLab Terraform Code
+1) User Settings → Access Tokens
+2) Name: `terraform-gitlab-infra`
+3) Scopes: `api`, `read_repository`, `write_repository`
+4) Create token
 
-...
+### 2.3.2 Fill in Access Token in tfvars file
+
+1) Create `terraform.tfvars` file:
+    ```bash
+    cd ~/path/to/gitlab-infrastructure/terraform
+    cp terraform.tfvars.example terraform.tfvars
+    vi terraform.tfvars
+    ```
+
+2) Fill in:
+    ```bash
+    gitlab_token       = "glpat-xxxxxxxxxxxxxxxxxxxx"  # ← You need to create this
+    gitlab_base_url    = "http://192.168.0.11/api/v4"  # ← Already correct for you
+    default_visibility = "private"                      # ← Already correct
+    admin_user_id      = 2                              # ← You need to find this
+    ```
+
+## 2.4 Add CI/CD Variables in GitLab
+
+1) Go to your `<username>/gitlab-infrastructure` project:
+    -> Settings -> CI/CD -> Variables -> Expan -> Add variable
+
+2) Add these variables:
+    - GITLAB_TOKEN: glpat-xxxx...
+    - TF_VAR_gitlab_token: glpat-xxxx...
+    - TF_VAR_admin_user_id: <user-id>
+
+## 2.5 Run the gitlab-infrastructure pipeline
+
+Push code to the `gitlab-infrastructure` repo and this will trigger the pipeline
+
+Or manually trigger the pipeline in the UI
 
 ---
 
