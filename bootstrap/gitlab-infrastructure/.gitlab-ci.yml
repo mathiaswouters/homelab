@@ -1,0 +1,114 @@
+stages:
+  - validate
+  - plan
+  - apply
+  # - destroy-plan
+  # - destroy
+
+variables:
+  TF_ROOT: ${CI_PROJECT_DIR}/terraform
+  TF_HTTP_PASSWORD: ${GITLAB_TOKEN}
+
+image:
+  name: hashicorp/terraform:1.9
+  entrypoint: [""]
+
+cache:
+  key: "${CI_COMMIT_REF_SLUG}"
+  paths:
+    - ${TF_ROOT}/.terraform
+    - ${TF_ROOT}/.terraform.lock.hcl
+
+before_script:
+  - cd ${TF_ROOT}
+  - terraform --version
+
+validate:
+  stage: validate
+  tags:
+    - docker
+  script:
+    - terraform init -backend=false
+    - terraform validate
+    - terraform fmt -check -recursive
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
+
+plan:
+  stage: plan
+  tags:
+    - docker
+  script:
+    - |
+      terraform init \
+        -backend-config="password=${TF_HTTP_PASSWORD}"
+    - terraform plan -out=tfplan -input=false -lock=false
+    - terraform show -json tfplan > tfplan.json
+  artifacts:
+    name: plan
+    paths:
+      - ${TF_ROOT}/tfplan
+      - ${TF_ROOT}/tfplan.json
+    reports:
+      terraform: ${TF_ROOT}/tfplan.json
+    expire_in: 7 days
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
+
+apply:
+  stage: apply
+  tags:
+    - docker
+  script:
+    - |
+      terraform init \
+        -backend-config="password=${TF_HTTP_PASSWORD}"
+    - terraform apply -auto-approve -input=false -lock=false tfplan
+  dependencies:
+    - plan
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      when: manual
+  environment:
+    name: production
+    action: prepare
+
+# destroy-plan:
+#   stage: destroy-plan
+#   tags:
+#     - docker
+#   script:
+#     - |
+#       terraform init \
+#         -backend-config="password=${TF_HTTP_PASSWORD}"
+#     - echo "Planning destruction of all resources..."
+#     - terraform plan -destroy -out=destroy-tfplan -lock=false
+#     - echo ""
+#     - echo "⚠️  Review the plan above carefully!"
+#     - echo "⚠️  If you proceed with destroy stage, ALL of these resources will be deleted!"
+#   artifacts:
+#     name: destroy-plan
+#     paths:
+#       - ${TF_ROOT}/destroy-tfplan
+#     expire_in: 1 day
+#   rules:
+#     - if: '$CI_COMMIT_BRANCH == "main"'
+#       when: manual
+
+# destroy:
+#   stage: destroy
+#   tags:
+#     - docker
+#   script:
+#     - |
+#       terraform init \
+#         -backend-config="password=${TF_HTTP_PASSWORD}"
+#     - terraform destroy -auto-approve -input=false -lock=false
+#   rules:
+#     - if: '$CI_COMMIT_BRANCH == "main"'
+#       when: manual
+#   environment:
+#     name: production
+#     action: prepare

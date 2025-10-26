@@ -84,20 +84,23 @@ Other security tools / services:
 
 # Homelab Services
 
-| Type                      | Tool/Service                     |
-|---------------------------|----------------------------------|
-| Dashboard                 | Homepage                         |
-| ...                       | n8n                              |
-| File Hosting Services     | Nextcloud                        |
-| Torrent                   | qBittorent                       |
-| Media Stack               | ARR Stack                        |
-| Media Player              | Jellyfin                          |
-| Tdarr                     | Media transcoding automation.    |
-| Ad-blocking               | Pi-hole                          |
-| Smart Home                | Home Assistant                   |
-| Smart Home                | Node-RED                         |
-| URL Shortener             | Shlink                           |
-| Linktree Alternative      | Littlelink                       |
-| Bitwarden / Vaultwarden   | Bitwarden Server                 |
-| Immich / Photoprism       | Photo management / backup        |
-| ...                       | ...                              |
+| Type                      | Tool/Service                      |
+|---------------------------|-----------------------------------|
+| Dashboard                 | Homepage                          |
+| ...                       | n8n                               |
+| AI                        | Ollama / OpenwebUI / ...          |
+| File Hosting Services     | Nextcloud                         |
+| Torrent                   | qBittorent                        |
+| Media Stack               | ARR Stack                         |
+| Media Player              | Jellyfin                           |
+| Tdarr                     | Media transcoding automation.     |
+| Ad-blocking               | Pi-hole                           |
+| Smart Home                | Home Assistant                    |
+| Smart Home                | Node-RED                          |
+| URL Shortener             | Shlink                            |
+| Linktree Alternative      | Littlelink                        |
+| Bitwarden / Vaultwarden   | Bitwarden Server                  |
+| Immich / Photoprism       | Photo management / backup         |
+| Audiobookshelf            | Audiobook and podcast server      |
+| Calibre-Web-Automated     | E-book management                 |
+| ...                       | ...                               |
