@@ -4,7 +4,7 @@
 
 ## Homelab Setup / Manual:
 
-[Homelab Setup / Manual](/docs/Setup-Manual.md)
+[Homelab Setup / Manual](/docs/setup-manual.md)
 
 ## HP Z440 NIC Fix:
 
