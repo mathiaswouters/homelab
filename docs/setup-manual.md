@@ -294,20 +294,6 @@ test-runner:
 
 # Phase 2: GitLab-as-Code
 
-Create your first repo `gitlab-infrastructure` with this structure:
-```
-gitlab-infrastructure/
-├── terraform/
-│   ├── groups.tf
-│   ├── projects.tf
-│   ├── users.tf
-│   ├── runners.tf
-│   ├── variables.tf
-│   └── providers.tf
-├── .gitlab-ci.yml
-└── README.md
-```
-
 ## 2.1 Create gitlab-infrastructure project
 
 Create a new project: `yourusername/gitlab-infrastructure`
