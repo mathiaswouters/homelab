@@ -10,7 +10,8 @@
 | Reverse Proxy             | Traefik                                   |
 | Certs / TLS management    | Cert-Manager + Let's Encrypt             |
 | Load Balancing            | MetalLB                                  |
-| Service Mesh              | Cilium / Istio / Linkerd / ...           |
+| CNI                       | Cilium                                   |
+| Service Mesh              | Istio                                    |
 | Persistent Volumes        | Longhorn                                 |
 | K8s DNS                   | External-DNS                             |
 | Registry                  | Harbor + JFrog Artifactory               |

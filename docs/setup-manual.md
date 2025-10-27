@@ -349,20 +349,6 @@ Or manually trigger the pipeline in the UI
 
 # Phase 3: Deploy Foundational Services on VMs
 
-In this phase deploy following services:
-
-- MetalLB
-- Cert-Manager (+ Let's Encrypt)
-- Traefik (Maybe in K8s --> lookup how it is done )
-- Hashicorp Vault  (On VM)
-- ArgoCD
-- Harbor (On VM)
-- Service Mesh ???
-- Longhorn
-- External-DNS
-
---> **Deploy all K8s services with ArgoCD !!!!!!!!!!!!!**
-
 ## 3.1 Deploy HashiCorp Vault
 
 - Create VM with Terraform (192.168.0.20, 2 CPU, 4GB RAM, 20GB disk)
@@ -408,7 +394,7 @@ In this phase deploy following services:
 - Create 3 VMs with Terraform (192.168.0.30-32, 2 CPU, 4GB RAM each)
 - Install Kubernetes prerequisites with Ansible --> kubeadm
 - Initialize first control-plane with kubeadm
-- Install Calico CNI
+- Install Cilium (as a CNI) --> Enable Hubble for observability & Configure network policies
 - Join other control-planes
 - Remove control-plane taints (allow workloads)
 - Copy kubeconfig to local machine
@@ -490,7 +476,7 @@ In this phase deploy following services:
   - Workers: 4 CPU, 8GB RAM each
 - Install Kubernetes with Ansible --> kubeadm
 - Initialize control-plane with kubeadm
-- Install Calico CNI
+- Install Cilium (as a CNI) --> Enable Hubble for observability & Configure network policies
 - Join worker nodes
 - Copy kubeconfig to local machine
 
@@ -530,22 +516,10 @@ Create ArgoCD Applications for workload cluster:
 - Apply LimitRanges to each namespace
 - Apply default-deny NetworkPolicies
 
-**Service Mesh (Optional - Choose One):**
-
-*Option A: Cilium (Recommended for beginners)*
-- Deploy Cilium via ArgoCD (replaces Calico)
-- Enable Hubble for observability
-- Configure network policies
-
-*Option B: Istio*
+**Istio (Service Mesh):**
 - Deploy Istio with istioctl
 - Deploy Kiali for visualization
 - Configure mTLS between services
-
-*Option C: Linkerd*
-- Deploy Linkerd CLI
-- Install Linkerd control plane
-- Enable auto-injection per namespace
 
 
 ## 4.3 Pi Cluster
