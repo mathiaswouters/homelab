@@ -6,6 +6,10 @@
 
 [Homelab Setup / Manual](/docs/setup-manual.md)
 
+## GitLab Architecture:
+
+[GitLab Architecture](/docs/gitlab-architecture.md)
+
 ## HP Z440 NIC Fix:
 
 [Manual - HP Z440 NIC Fix](/docs/hp_z440-NIC-fix.md)
