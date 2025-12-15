@@ -1,7 +1,0 @@
-# Copy this to terraform.tfvars and fill in your values
-# DO NOT commit terraform.tfvars!
-
-gitlab_token      = "glpat-xxxxxxxxxxxxxxxxxxxx"
-gitlab_base_url   = "http://192.168.0.11/api/v4/"
-default_visibility = "private"
-admin_user_id     = 2  # Your GitLab user ID
