@@ -2,17 +2,38 @@
 
 *Here comes the introduction*
 
-## Homelab Setup / Manual:
+## Kubernetes Setup
 
-[Homelab Setup / Manual](/docs/setup-manual.md)
+### Management Cluster
 
-## GitLab Architecture:
+#### VMs
 
-[GitLab Architecture](/docs/gitlab-architecture.md)
+- 1 x control (2 cpu - 8 GB ram)
+- 2 x worker (2 cpu - 8 GB ram)
 
-## HP Z440 NIC Fix:
+#### Services
 
-[Manual - HP Z440 NIC Fix](/docs/hp_z440-NIC-fix.md)
+- ArgoCD
+- Harbor
+- HashiCorp Vault
+- Cert-Manager
+- External-DNS
+- Monitoring stack
+- Log
+- Ingress Controller
+- ...
+
+### Workload Cluster
+
+#### VMs
+
+- 1 x control (2 cpu - 8 GB ram)
+- 2 x worker (2 cpu - 8 GB ram)
+
+#### Services
+
+- Ingress
+- Application workloads
 
 ## Resources
 - **[The Lazy Automator - YouTube Channel](https://www.youtube.com/@Tech-TheLazyAutomator/videos)**
@@ -26,8 +47,8 @@
 
 ## Homelab Architecture & Services:
 
-- [Homelab Architecture & Services](/docs/homelab_architecture_services.md)
-- [Homelab Architecture Diagram](/docs/homelab_architecture.drawio)
+- [Homelab Architecture & Services]()
+- [Homelab Architecture Diagram]()
 
 
 ---
