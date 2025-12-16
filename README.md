@@ -35,6 +35,29 @@
 - Ingress
 - Application workloads
 
+## Setup:
+
+1. copy_ssh_keys_to_vms script:
+```
+chmod 700 copy_ssh_keys_to_vms.sh
+./copy_ssh_keys_to_vms.sh
+```
+
+2. bootstrap playbook:
+```
+ansible-playbook bootstrap.yml -i inventory/hosts.ini -K
+```
+
+3. update-vms playbook:
+```
+ansible-playbook update-vms.yml -i inventory/hosts.ini
+```
+
+4. other playbooks:
+```
+ansible-playbook playbooks/main.yml
+```
+
 ## Resources
 - **[The Lazy Automator - YouTube Channel](https://www.youtube.com/@Tech-TheLazyAutomator/videos)**
 - [Proxmox Cloud-Init Guide - YT Jim's Garage](https://www.youtube.com/watch?v=Kv6-_--y5CM)

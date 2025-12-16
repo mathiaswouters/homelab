@@ -1,0 +1,38 @@
+# common.yml playbook
+- import_playbook: common.yml
+
+# container-runtime.yml playbook
+
+# kubernetes.yml or k8s-control-plane.yml + k8s-worker.yml playbook
+
+# cni-cinium.yml playbook
+
+# metallb.yml playbook
+
+# cert-manager.yml playbook
+
+# ingress-nginx.yml playbook
+
+# harbor.yml playbook
+
+# hashicorp-vault.yml playbook
+
+# argocd.yml playbook
+
+# .yml playbook
+
+# .yml playbook
+
+# .yml playbook
+
+# .yml playbook
+
+# .yml playbook
+
+# .yml playbook
+
+# .yml playbook
+
+# .yml playbook
+
+# .yml playbook

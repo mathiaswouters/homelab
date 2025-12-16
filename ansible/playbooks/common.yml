@@ -1,0 +1,6 @@
+---
+
+- name: Configure common settings for Kubernetes nodes
+  hosts: all
+  roles:
+    - common

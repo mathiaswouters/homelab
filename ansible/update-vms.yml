@@ -1,0 +1,9 @@
+---
+
+- name: Update VMs
+  hosts: all
+  tasks:
+  - name: Update VMs
+    ansible.builtin.apt:
+      name: "*"
+      state: latest

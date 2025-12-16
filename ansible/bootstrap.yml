@@ -1,0 +1,15 @@
+---
+
+- name: Bootstrap VMs
+  hosts: all
+  gather_facts: no
+  
+  tasks:
+    - name: Enable passwordless sudo for mathias
+      become: yes
+      lineinfile:
+        path: /etc/sudoers.d/mathias
+        line: 'mathias ALL=(ALL) NOPASSWD:ALL'
+        create: yes
+        mode: '0440'
+        validate: 'visudo -cf %s'

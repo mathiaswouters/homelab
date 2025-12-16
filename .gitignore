@@ -38,6 +38,7 @@ Thumbs.db
 id_rsa*
 id_ed25519*
 EOF
+*.pub
 
 # Backup files
 *.backup
